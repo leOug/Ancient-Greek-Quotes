@@ -13,20 +13,31 @@ import android.widget.TextView;
 
 public class tellerActivity extends AppCompatActivity {
 
+    TextView anc_quote;
+    TextView gr_quote;
+    TextView philosopher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teller);
 
+        anc_quote = (TextView) findViewById(R.id.anc_quote);
+        gr_quote = (TextView) findViewById(R.id.gr_quote);
+        philosopher = (TextView) findViewById(R.id.phil);
+
+
+
+        String anc, gr, phil;
         Intent intent = getIntent();
-        String fortune = intent.getStringExtra(MainActivity.EXTRA);
-        System.out.println(fortune);
-        TextView txt = new TextView(this);
-        txt.setTextSize(30);
-        txt.setGravity(Gravity.CENTER_HORIZONTAL);
-        txt.setText(fortune);
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
-        layout.addView(txt);
+        anc = intent.getStringExtra("anc");
+        gr = intent.getStringExtra("gr");
+        phil = intent.getStringExtra("phil");
+
+        anc_quote.setText(anc);
+        gr_quote.setText(gr);
+        philosopher.setText("~" + phil);
+
     }
 
     public void returnToMain(View view) {
