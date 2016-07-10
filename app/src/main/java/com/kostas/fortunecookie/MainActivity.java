@@ -197,23 +197,41 @@ public class MainActivity extends AppCompatActivity {
             "Δημόκριτος",
             "Θαλής ο Μιλήσιος",
             "Δημόκριτος",
+
             "Ιπποκράτης",
+
             "Πλούταρχος",
+
             "Ευριπίδης",
+
             "Ευριπίδης",
+
             "Μάρκος Αυρήλιος",
+
             "Πλάτων",
+
             "Όμηρος",
+
             "Πλάτων",
+
             "Παλλαδάς ο Αλεξανδρεύς",
+
             "Παλλαδάς ο Αλεξανδρεύς",
+
             "Πυθαγόρας",
+
             "Πλάτων",
+
             "Αριστοτέλης",
+
             "Πρωταγόρας",
+
             "Πλάτων",
+
             "Επίκουρος",
+
             "Αρχίλοχος",
+
             "Όμηρος",
             "Θουκυδίδης",
             "Σοφοκλής",
@@ -231,6 +249,67 @@ public class MainActivity extends AppCompatActivity {
             "Sphinx's riddle",
             "Julius Caesar",
             "Anacharsis",
+            "Diogenes",
+            "Philip II of Macedon",
+            "Menander",
+            "Pindar",
+            "Sophocles",
+            "Hippocrates",
+            "Epicurus",
+            "Menander",
+            "Socrates",
+            "Plato",
+            "Marcus Aurelius",
+            "Thales of Miletus",
+            "Heraclitus",
+            "Paladas of Alexandria",
+            "Heraclitus",
+            "Plato",
+            "Plato",
+            "Pindar",
+            "Hippocrates",
+            "Aesop",
+            "Menander",
+            "Ancient greek proverb",
+            "Antisthenes",
+            "Pythagorians' question",
+            "Epicurus",
+            "Democritus",
+            "Thales of Miletus",
+            "Democritus",
+            "Hippocrates",
+            "Plutarch",
+            "Euripides",
+            "Euripides",
+            "Marcus Aurelius",
+            "Plato",
+            "Homer",
+            "Plato",
+            "Paladas of Alexandria",
+            "Paladas of Alexandria",
+            "Pythagoras",
+            "Plato",
+            "Aristotle",
+            "Protagoras",
+            "Plato",
+            "Epicurus",
+            "Archilochus"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     };
 
