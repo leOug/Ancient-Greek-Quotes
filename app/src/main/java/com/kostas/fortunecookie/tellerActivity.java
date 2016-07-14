@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Calendar;
 
@@ -26,69 +27,69 @@ import java.util.Calendar;
 public class tellerActivity extends AppCompatActivity {
 
     final private String[] sayingAnc = {
-            "1Ζώον δίπουν άπτερον",
-            "2Μη εκ λόγων τα πράγματα, αλλ' εκ των πραγμάτων τους λόγους ζητείν.",
-            "3Τι εστιν ό μίαν έχον φωνήν τετράπουν και δίπουν και τρίπουν γίνεται;",
-            "4Φύσει γαρ άνθρωπος, ό βούλεται, τούτο και οίεται.",
-            "5Πολέμιον ανθρώποις αυτοί εαυτοίς.",
-            "6Πάντες άνθρωποι φύσει ορέγονται του ειδέναι.",
-            "7Άνθρωπον ζητώ.",
-            "8Μέμνησο ότι άνθρωπος εί.",
-            "9Ως χαρίεν εστ’ άνθρωπος αν άνθρωπος ή.",
-            "10Σκιάς όναρ άνθρωπος.",
-            "1Πολλά τα δεινά κουδέν ανθρώπου δεινότερον πέλει.",
-            "2Ουκ ένι ιατρικήν είδέναι, όστις μη οίδεν ό τι εστίν άνθρωπος.",
-            "3Άπαξ άνθρωποι γεγόναμεν, δις δε ουκ έστι γενέσθαι.",
-            "4Θνητός γεγονώς άνθρωπε, μη φρόνει μέγα.",
-            "5Πρώτον μεν γαρ τρία ην τα γένη τα των ανθρώπων, ουχ ώσπερ νυν δύο.",
-            "6Άνθρωπος τελειωθείς βέλτιστον των ζώων, χωρισθέν δε νόμου και δίκης, χείριστον πάντων.",
-            "7Του ανθρωπίνου βίου ο μεν χρόνος στιγμή, η δε ουσία ρέουσα, η δε αίσθησις αμυδρά, η δε " +
+            "Ζώον δίπουν άπτερον",
+            "Μη εκ λόγων τα πράγματα, αλλ' εκ των πραγμάτων τους λόγους ζητείν.",
+            "Τι εστιν ό μίαν έχον φωνήν τετράπουν και δίπουν και τρίπουν γίνεται;",
+            "Φύσει γαρ άνθρωπος, ό βούλεται, τούτο και οίεται.",
+            "Πολέμιον ανθρώποις αυτοί εαυτοίς.",
+            "Πάντες άνθρωποι φύσει ορέγονται του ειδέναι.",
+            "Άνθρωπον ζητώ.",
+            "Μέμνησο ότι άνθρωπος εί.",
+            "Ως χαρίεν εστ’ άνθρωπος αν άνθρωπος ή.",
+            "Σκιάς όναρ άνθρωπος.",
+            "Πολλά τα δεινά κουδέν ανθρώπου δεινότερον πέλει.",
+            "Ουκ ένι ιατρικήν είδέναι, όστις μη οίδεν ό τι εστίν άνθρωπος.",
+            "Άπαξ άνθρωποι γεγόναμεν, δις δε ουκ έστι γενέσθαι.",
+            "Θνητός γεγονώς άνθρωπε, μη φρόνει μέγα.",
+            "Πρώτον μεν γαρ τρία ην τα γένη τα των ανθρώπων, ουχ ώσπερ νυν δύο.",
+            "Άνθρωπος τελειωθείς βέλτιστον των ζώων, χωρισθέν δε νόμου και δίκης, χείριστον πάντων.",
+            "Του ανθρωπίνου βίου ο μεν χρόνος στιγμή, η δε ουσία ρέουσα, η δε αίσθησις αμυδρά, η δε " +
                     "όλου του σώματος σύγκρισις εύσηπτος, η δε ψυχή ρόμβος, η δε τύχη δυστέκμαρτον, η δε φήμη άκριτον.",
-            "8Κάλλιστον κόσμος, ποίημα γαρ θεού.",
-            "9Κόσμον τονδε, τον αυτόν απάντων, ούτε τις θεών ούτε ανθρώπων εποίησεν, αλλ' ην αεί και έστιν και έστε πύρ αείζωον.",
-            "20Σκηνή πας ο κόσμος εστί και παίγνιον· ή μάθε παίζειν ή φέρε τας οδύνας.",
-            "1Τοις εγρηγορόσιν ένα και κοινόν κόσμον είναι, των δε κοιμωμένων έκαστον εις ίδιον αποστρέφεσθαι.",
-            "2Πάντων χρημάτων μέτρον άνθρωπος.",
-            "3Ο αναθρών ά όπωπε.",
-            "4Σκιάς όναρ άνθρωπος.",
-            "5Ουκ ένι ιατρικήν είδέναι, όστις μη οίδεν ό τι εστίν άνθρωπος.",
-            "6Γυμνοί ήλθομεν οι πάντες, γυμνοί και απελευσόμεθα.",
-            "7Θνητός γεγονώς άνθρωπε, μη φρόνει μέγα.",
-            "8Ουδέν κακόν αμιγές καλού.",
-            "9Αισχρόν το γ’ αισχρόν, καν δοκή καν μη δοκή.",
-            "30Πη παρέβην; Τι δ’ έρεξα;Τι δε μοι δέον ουκ ετελέσθη;",
-            "1Ανοήμονες βιούσι ού τερπόμενοι βιούν.",
-            "2Τον βίον μη, τω χρόνω βραχύν όντα, πράγμασιν κακοίς μακρόν ποιείν.",
-            "3Ο κόσμος αλλοίωσις, ο βίος υπόληψις.",
-            "4Άνθρωποι βίου δεόμενοι, πολλά και παντοία τεχνέονται.",
-            "5Μέτρον βίου το καλόν ου το του χρόνου μήκος.",
-            "6Βραχύς αιών.",
-            "7Θνητών όλβιος εις το τέλος ουδείς.",
-            "8Έξω του κόσμου το αποθανόν ου πίπτει.",
-            "9Ο θάνατος τυγχάνει ων, ως εμοί δοκεί, ουδέν άλλο ή δυοίν πραγμάτοιν διάλυσις, της ψυχής και του σώματος απ' αλλήλου.",
-            "40Ύπνω και θανάτω διδυμάοσιν.",
-            "1Κοινωνία γαρ ψυχή και σώματι διαλύσεως ουκ έστιν η κρείττον.",
-            "2Πολλά λαλείς, άνθρωπε, χαμαί δε τίθη μετά μικρόν. Σίγα, και μελέτα ζών έτι τον θάνατον.",
-            "3Άρα μη θανόντες τώ δοκείν ζώμεν μόνον," +
+            "Κάλλιστον κόσμος, ποίημα γαρ θεού.",
+            "Κόσμον τονδε, τον αυτόν απάντων, ούτε τις θεών ούτε ανθρώπων εποίησεν, αλλ' ην αεί και έστιν και έστε πύρ αείζωον.",
+            "Σκηνή πας ο κόσμος εστί και παίγνιον· ή μάθε παίζειν ή φέρε τας οδύνας.",
+            "Τοις εγρηγορόσιν ένα και κοινόν κόσμον είναι, των δε κοιμωμένων έκαστον εις ίδιον αποστρέφεσθαι.",
+            "Πάντων χρημάτων μέτρον άνθρωπος.",
+            "Ο αναθρών ά όπωπε.",
+            "Σκιάς όναρ άνθρωπος.",
+            "Ουκ ένι ιατρικήν είδέναι, όστις μη οίδεν ό τι εστίν άνθρωπος.",
+            "Γυμνοί ήλθομεν οι πάντες, γυμνοί και απελευσόμεθα.",
+            "Θνητός γεγονώς άνθρωπε, μη φρόνει μέγα.",
+            "Ουδέν κακόν αμιγές καλού.",
+            "Αισχρόν το γ’ αισχρόν, καν δοκή καν μη δοκή.",
+            "Πη παρέβην; Τι δ’ έρεξα;Τι δε μοι δέον ουκ ετελέσθη;",
+            "Ανοήμονες βιούσι ού τερπόμενοι βιούν.",
+            "Τον βίον μη, τω χρόνω βραχύν όντα, πράγμασιν κακοίς μακρόν ποιείν.",
+            "Ο κόσμος αλλοίωσις, ο βίος υπόληψις.",
+            "Άνθρωποι βίου δεόμενοι, πολλά και παντοία τεχνέονται.",
+            "Μέτρον βίου το καλόν ου το του χρόνου μήκος.",
+            "Βραχύς αιών.",
+            "Θνητών όλβιος εις το τέλος ουδείς.",
+            "Έξω του κόσμου το αποθανόν ου πίπτει.",
+            "Ο θάνατος τυγχάνει ων, ως εμοί δοκεί, ουδέν άλλο ή δυοίν πραγμάτοιν διάλυσις, της ψυχής και του σώματος απ' αλλήλου.",
+            "Ύπνω και θανάτω διδυμάοσιν.",
+            "Κοινωνία γαρ ψυχή και σώματι διαλύσεως ουκ έστιν η κρείττον.",
+            "Πολλά λαλείς, άνθρωπε, χαμαί δε τίθη μετά μικρόν. Σίγα, και μελέτα ζών έτι τον θάνατον.",
+            "Άρα μη θανόντες τώ δοκείν ζώμεν μόνον," +
                     "Έλληνες άνδρες, συμφορά πεπτωκότες" +
                     "όνειρον εικάζοντες είναι τόν βίον;" +
                     "ή ζώμεν ημείς, τού βίου τεθνηκότος;",
-            "4Θανέειν πέπρωται άπασι.",
-            "5Εισί γάρ δή οι περί τάς τελετάς ναρθηκοφόροι μέν πολλοί, βάκχοι δε τε παύροι.",
-            "6Πάντα γαρ φύσει έχει τι θείον.",
-            "7Περί μεν θεών ουκ έχω ειδέναι, ούθ’ ως εισίν ουθ’ ως ουκ εισίν.",
-            "8Θεός ουδαμή ουδαμώς άδικος.",
-            "9Θεοί μεν γαρ εισίν. Εναργής γαρ αυτών εστιν η γνώσις.",
-            "50Τοις θεοίς τίθει τα πάντα.",
-            "1Έσσετ’ ήμαρ.",
-            "2Οι καιροί ου μενετοί.",
-            "3Πάντα εκκαλύπτων ο χρόνος εις το φως άγει.",
-            "4Από κύλικος μέχρι χειλέων πολλά πέλει.",
-            "5Όμοια γάρ ως επί το πολύ τα μέλλοντα τοις γεγονόσι.",
-            "6Άμες γ’ εσόμεθα πολλώ κάρρονες.",
-            "7Μέμνησο νέος ων, ως γέρων έση ποτέ.",
-            "8Αετού γήρας κορύδου νεότης.",
-            "9Αμές ποκ’ ήμες άλκιμοι νεανίαι."
+            "Θανέειν πέπρωται άπασι.",
+            "Εισί γάρ δή οι περί τάς τελετάς ναρθηκοφόροι μέν πολλοί, βάκχοι δε τε παύροι.",
+            "Πάντα γαρ φύσει έχει τι θείον.",
+            "Περί μεν θεών ουκ έχω ειδέναι, ούθ’ ως εισίν ουθ’ ως ουκ εισίν.",
+            "Θεός ουδαμή ουδαμώς άδικος.",
+            "Θεοί μεν γαρ εισίν. Εναργής γαρ αυτών εστιν η γνώσις.",
+            "Τοις θεοίς τίθει τα πάντα.",
+            "Έσσετ’ ήμαρ.",
+            "Οι καιροί ου μενετοί.",
+            "Πάντα εκκαλύπτων ο χρόνος εις το φως άγει.",
+            "Από κύλικος μέχρι χειλέων πολλά πέλει.",
+            "Όμοια γάρ ως επί το πολύ τα μέλλοντα τοις γεγονόσι.",
+            "Άμες γ’ εσόμεθα πολλώ κάρρονες.",
+            "Μέμνησο νέος ων, ως γέρων έση ποτέ.",
+            "Αετού γήρας κορύδου νεότης.",
+            "Αμές ποκ’ ήμες άλκιμοι νεανίαι."
 
     };
 
@@ -99,7 +100,7 @@ public class tellerActivity extends AppCompatActivity {
             "Από τη φύση του ο άνθρωπος, αυτό που θέλει, αυτό νομίζει",
             "Ο εχθρός του ανθρώπου είναι ο ίδιος εαυτός του",
             "Όλοι οι άνθρωποι έχουν από τη φύση τους έφεση για γνώση.",
-            "Ζήτω ο άνθρωπος!",
+            "Ζητάω έναν άνθρωπο!",
             "Να θυμάσαι ότι είσαι άνθρωπος.",
             "Πόσο ωραίο πράγμα είναι ο άνθρωπος όταν είναι άνθρωπος ",
             "Το όνειρο της σκιάς είναι ο άνθρωπος",
@@ -171,7 +172,7 @@ public class tellerActivity extends AppCompatActivity {
             "From the human nature, what they want to do, that is what they do.",
             "A man's enemy, is himself.",
             "All humans, from their nature, have a flair for knowledge.",
-            "Long live humans!",
+            "I'm searching for a human!",
             "Always remember that you are human",
             "How wonderful humans are, when they are humans",
             "A human is the dream of a shadow",
@@ -211,7 +212,7 @@ public class tellerActivity extends AppCompatActivity {
             "Death is nothing more than the splitting of two things, the body and the soul",
             "Sleep and death are twin siblings",
             "The union of the body and the soul [birth] is no better than their separation [death]",
-            "You speak too much, human, soon you will die. Be silent, and while you leave, think of death",
+            "You speak too much, human, soon you will die. Be silent, and while you live, think of death",
             "Perhaps while we have died, we live only in imagination," +
                    "us greeks, who have fallen to despair," +
                    "thinking that life is a dream?" +
@@ -236,65 +237,65 @@ public class tellerActivity extends AppCompatActivity {
     };
 
     final private String[] philosopherGr = {
-            "1Ο ορισμός του ανθρώπου κατά τον Πλάτωνα",
-            "2Πλάτων",
-            "3Το αίνιγμα της Σφίγγας",
-            "4Ιούλιος Καίσαρ",
-            "5Ανάχαρσις",
-            "6Διογένης",
-            "7Φίλιππος Β’",
-            "8Μένανδρος",
-            "9Πίνδαρος",
-            "10Σοφοκλής",
-            "1Ιπποκράτης",
-            "2Επίκουρος",
-            "3Μένανδρος",
-            "4Σωκράτης",
-            "5Πλάτων",
-            "6Μάρκος Αυρήλιος",
-            "7Θαλής ο Μιλήσιος",
-            "8Ηράκλειτος",
-            "9Παλλαδάς ο Αλεξανδρεύς",
-            "20Ηράκλειτος",
-            "1Πλάτων",
-            "2Πλάτων",
-            "3Πίνδαρος",
-            "4Ιπποκράτης",
-            "5Αίσωπος",
-            "6Μένανδρος",
-            "7Αρχαίοελληνική παροιμία",
-            "8Αντισθένης",
-            "9Ερώτημα των Πυθαγορείων",
-            "30Επίκουρος",
-            "1Δημόκριτος",
-            "2Θαλής ο Μιλήσιος",
-            "3Δημόκριτος",
-            "4Ιπποκράτης",
-            "5Πλούταρχος",
-            "6Ευριπίδης",
-            "7Ευριπίδης",
-            "8Μάρκος Αυρήλιος",
-            "9Πλάτων",
-            "40Όμηρος",
-            "1Πλάτων",
-            "2Παλλαδάς ο Αλεξανδρεύς",
-            "3Παλλαδάς ο Αλεξανδρεύς",
-            "4Πυθαγόρας",
-            "5Πλάτων",
-            "6Αριστοτέλης",
-            "7Πρωταγόρας",
-            "8Πλάτων",
-            "9Επίκουρος",
-            "50Αρχίλοχος",
-            "1Όμηρος",
-            "2Θουκυδίδης",
-            "3Σοφοκλής",
-            "4Ειπώθηκε από δούλο του αργοναύτη Ανταίου",
-            "5Ευριπίδης",
-            "6Τραγούδι από το χορό των νέων στις γιορτές της αρχαίας Σπάρτης.",
-            "7Μένανδρος",
-            "8Αρχαιοελληνική παροιμία",
-            "9Τραγούδι από το χορό των γερόντων στις γιορτές της αρχ. Σπάρτης"
+            "Ο ορισμός του ανθρώπου κατά τον Πλάτωνα",
+            "Πλάτων",
+            "Το αίνιγμα της Σφίγγας",
+            "Ιούλιος Καίσαρ",
+            "Ανάχαρσις",
+            "Αριστοτέλης",
+            "Διογένης",
+            "Φίλιππος Β’",
+            "Μένανδρος",
+            "Πίνδαρος",
+            "Σοφοκλής",
+            "Ιπποκράτης",
+            "Επίκουρος",
+            "Μένανδρος",
+            "Σωκράτης",
+            "Πλάτων",
+            "Μάρκος Αυρήλιος",
+            "Θαλής ο Μιλήσιος",
+            "Ηράκλειτος",
+            "Παλλαδάς ο Αλεξανδρεύς",
+            "Ηράκλειτος",
+            "Πρωταγόρας",
+            "Σωκράτης",
+            "Πίνδαρος",
+            "Ιπποκράτης",
+            "Αίσωπος",
+            "Μένανδρος",
+            "Αρχαίοελληνική παροιμία",
+            "Αντισθένης",
+            "Ερώτημα των Πυθαγορείων",
+            "Δημόκριτος",
+            "Θαλής ο Μιλήσιος",
+            "Δημόκριτος",
+            "Ιπποκράτης",
+            "Πλούταρχος",
+            "Ευριπίδης",
+            "Ευριπίδης",
+            "Μάρκος Αυρήλιος",
+            "Πλάτων",
+            "Όμηρος",
+            "Πλάτων",
+            "Παλλαδάς ο Αλεξανδρεύς",
+            "Παλλαδάς ο Αλεξανδρεύς",
+            "Πυθαγόρας",
+            "Πλάτων",
+            "Αριστοτέλης",
+            "Πρωταγόρας",
+            "Πλάτων",
+            "Επίκουρος",
+            "0Αρχίλοχος",
+            "μηρος",
+            "Θουκυδίδης",
+            "Σοφοκλής",
+            "Ειπώθηκε από δούλο του αργοναύτη Ανταίου",
+            "Ευριπίδης",
+            "Τραγούδι από το χορό των νέων στις γιορτές της αρχαίας Σπάρτης.",
+            "Μένανδρος",
+            "Αρχαιοελληνική παροιμία",
+            "Τραγούδι από το χορό των γερόντων στις γιορτές της αρχ. Σπάρτης"
     };
 
     final private String[] philosopherEng = {
@@ -303,6 +304,7 @@ public class tellerActivity extends AppCompatActivity {
             "Sphinx's riddle",
             "Julius Caesar",
             "Anacharsis",
+            "Aristotle",
             "Diogenes",
             "Philip II of Macedon",
             "Menander",
@@ -318,8 +320,8 @@ public class tellerActivity extends AppCompatActivity {
             "Heraclitus",
             "Paladas of Alexandria",
             "Heraclitus",
-            "Plato",
-            "Plato",
+            "Protagoras",
+            "Socrates",
             "Pindar",
             "Hippocrates",
             "Aesop",
@@ -380,7 +382,16 @@ public class tellerActivity extends AppCompatActivity {
 
         sw = (Switch) findViewById(R.id.language);
         position = (int) (Math.random() * sayingAnc.length);
-        sw.setChecked(true);
+        if (existsLanguage()) {
+            String language = loadLanguage();
+            if (language.equals("eng")) {
+                sw.setChecked(true);
+            } else {
+                sw.setChecked(false);
+            }
+        } else {
+            sw.setChecked(true);
+        }
         ltor = AnimationUtils.loadAnimation(this, R.anim.ltor);
         rtol = AnimationUtils.loadAnimation(this, R.anim.rtol);
         rtol.setStartOffset(1000);
@@ -388,10 +399,17 @@ public class tellerActivity extends AppCompatActivity {
         ltor_phil.setStartOffset(1000);
         anc = getQuote("anc");
         anc_quote.setText(anc);
-        eng = getQuote("eng");
-        philEng = getQuote("philEng");
-        quote.setText(eng);
-        philosopher.setText("~" + philEng);
+        if (sw.isChecked()) {
+            eng = getQuote("eng");
+            philEng = getQuote("philEng");
+            quote.setText(eng);
+            philosopher.setText("~" + philEng);
+        } else {
+            gr = getQuote("gr");
+            philGr = getQuote("philGr");
+            quote.setText(gr);
+            philosopher.setText("~" + philGr);
+        }
         anc_quote.startAnimation(ltor);
         quote.startAnimation(rtol);
         philosopher.startAnimation(ltor_phil);
@@ -403,6 +421,7 @@ public class tellerActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (!b) {
+                    saveLanguage("gr");
                     gr = getQuote("gr");
                     philGr = getQuote("philGr");
 
@@ -413,6 +432,9 @@ public class tellerActivity extends AppCompatActivity {
                     philosopher.setText("~" + philGr);
                     philosopher.startAnimation(ltor_phil);
                 } else {
+                    saveLanguage("eng");
+                    eng = getQuote("eng");
+                    philEng = getQuote("philEng");
                     quote.setText(eng);
                     rtol.setStartOffset(0);
                     ltor_phil.setStartOffset(0);
@@ -551,6 +573,48 @@ public class tellerActivity extends AppCompatActivity {
         }
     }
 
+    public String loadLanguage() {
+        File file = new File (path, "lang.txt");
+        if (!file.exists()) {
+            return null;
+        } else {
+            return LoadLanguage(file);
+        }
+    }
+
+    public String LoadLanguage(File file) {
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "There has been an error", Toast.LENGTH_LONG).show();
+            return null;
+        }
+        InputStreamReader isr = new InputStreamReader(fis);
+        BufferedReader br = new BufferedReader(isr);
+
+        try {
+            fis.getChannel().position(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "There has been an error", Toast.LENGTH_LONG).show();
+            return null;
+        }
+
+        String tmp = null;
+        try {
+            if ((tmp = br.readLine()) != null) {
+                return tmp;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "There has been an error", Toast.LENGTH_LONG).show();
+            return null;
+        }
+        return null;
+    }
+
     public String LoadTimes(File file) {
         Log.i ("DEBUG", "In teller loadTimes");
         FileInputStream fis = null;
@@ -561,8 +625,6 @@ public class tellerActivity extends AppCompatActivity {
         }
         InputStreamReader isr = new InputStreamReader(fis);
         BufferedReader br = new BufferedReader(isr);
-
-        String test;
         try {
             fis.getChannel().position(0);
         } catch (IOException e) {
@@ -586,6 +648,57 @@ public class tellerActivity extends AppCompatActivity {
     public boolean exists() {
         File file = new File(path, "log.txt");
         return file.exists();
+    }
+
+    public boolean existsLanguage() {
+        File file = new File(path, "lang.txt");
+        return file.exists();
+    }
+
+    public boolean saveLanguage (String lang) {
+        File file = new File (path, "lang.txt");
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "There has been an error (possible not enough space)", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        }
+        return SaveLanguage(file, lang);
+    }
+
+    public boolean SaveLanguage(File file, String lang) {
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "There has been an error", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        try {
+            try {
+                if (fos != null) {
+                    fos.write(lang.getBytes());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "There has been an error", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        } finally {
+            try {
+                assert fos != null;
+                fos.close();
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "There has been an error", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
     }
 
 

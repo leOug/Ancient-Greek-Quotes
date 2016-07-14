@@ -30,7 +30,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.kostas.fortunecookie.MainActivity" />
         </activity>
-        <activity android:name=".PrefActivity"></activity>
     </application>
 
 </manifest>
